@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Details</title>
+   <style>
+  @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Roboto:wght@300;400;700&display=swap");
+
+  :root {
+    --font-primary: "Roboto", sans-serif;
+    --font-accent: "Baloo 2", cursive;
+    --color-primary: deeppink;
+    --color-secondary: #ff77c0;
+    --color-hover: #ff91c9;
+    --color-bg: #fff0f6;
+    --color-card-bg: #ffffff;
+    --color-light: #fdfdfd;
+    --color-dark: #333;
+    --color-muted: #555;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, var(--color-bg), var(--color-card-bg));
+    color: var(--color-dark);
+    line-height: 1.6;
+    font-size: 16px;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    font-family: var(--font-accent);
+    margin: 30px 0 20px;
+    text-shadow: 0 0 8px #ffcde8, 0 0 12px #ffddee;
+    animation: pulseTitle 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulseTitle {
+    from { text-shadow: 0 0 6px #ffcde8; }
+    to { text-shadow: 0 0 16px var(--color-hover); }
+  }
+
+  form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: var(--color-light);
+    border-radius: 12px;
+    box-shadow: 0 0 20px var(--shadow-light);
+  }
+
+  label {
+    display: block;
+    text-align: left;
+    font-size: 1rem;
+    color: var(--color-dark);
+    margin-top: 15px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--color-dark);
+    transition: 0.3s ease;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--color-hover);
+    outline: none;
+    box-shadow: 0 0 8px var(--color-hover);
+  }
+
+  .order-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--color-light);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--shadow-light);
+  }
+
+  .order-summary h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+  }
+
+  .total-amount {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-top: 10px;
+  }
+
+  .note {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-top: 20px;
+  }
+
+  .note strong {
+    color: var(--color-primary);
+  }
+
+  .submit-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .submit-container button {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 14px var(--shadow-heavy);
+  }
+
+  .submit-container button:hover {
+    background: linear-gradient(135deg, #ff1493, var(--color-hover));
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-hover);
+  }
+
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .submit-container button {
+      width: 80%;
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+    <h1>Delivery Details</h1>
+    <form id="deliveryForm">
+        <label for="customerName">Name:</label>
+        <input type="text" id="customerName" name="customer_name" placeholder="Enter your name" required>
+
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="address">Delivery Address:</label>
+        <textarea id="address" name="address" placeholder="Enter your delivery address" required></textarea>
+
+        <label for="deliveryDate">Date to Deliver:</label>
+        <input type="date" id="deliveryDate" name="delivery_date" required>
+
+        <label for="deliveryTime">Time to Deliver:</label>
+        <input type="time" id="deliveryTime" name="delivery_time" required>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Items Total: $<span id="itemsTotal">0.00</span></p>
+            <p>Delivery Fee: $<span id="deliveryFee">15.00</span></p>
+            <p class="total-amount">Total: $<span id="totalAmount">15.00</span></p>
+            <input type="hidden" id="F12Amount" name="F12_amount" value="0">
+            <input type="hidden" id="productsData" name="products" value="">
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> Adjust the payment amount on the next page to generate the correct PayNow QR code.</p>
+            <p>For order tracking, WhatsApp <strong>+6583091654</strong></p>
+        </div>
+
+        <div class="submit-container">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function updateFormFields() {
+            document.getElementById('customerName').value = getQueryParam('name') || "";
+            document.getElementById('email').value = getQueryParam('email') || "";
+            document.getElementById('contact').value = getQueryParam('contact') || "";
+            document.getElementById('address').value = getQueryParam('address') || "";
+            document.getElementById('deliveryDate').value = getQueryParam('delivery_date') || "";
+            document.getElementById('deliveryTime').value = getQueryParam('delivery_time') || "";
+            document.getElementById('F12Amount').value = getQueryParam('F12_amount') || "0.00";
+            document.getElementById('productsData').value = getQueryParam('products') || "";
+            
+            let itemsTotal = parseFloat(getQueryParam('F12_amount')) || 0;
+            let deliveryFee = 15.00;
+            let totalAmount = itemsTotal + deliveryFee;
+
+            document.getElementById('itemsTotal').textContent = itemsTotal.toFixed(2);
+            document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
+        }
+
+        document.addEventListener("DOMContentLoaded", updateFormFields);
+
+        document.getElementById("deliveryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = encodeURIComponent(document.getElementById("customerName").value);
+            const email = encodeURIComponent(document.getElementById("email").value);
+            const contact = encodeURIComponent(document.getElementById("contact").value);
+            const address = encodeURIComponent(document.getElementById("address").value);
+            const deliveryDate = encodeURIComponent(document.getElementById("deliveryDate").value);
+            const deliveryTime = encodeURIComponent(document.getElementById("deliveryTime").value);
+            const amount = encodeURIComponent(document.getElementById("F12Amount").value);
+            const products = encodeURIComponent(document.getElementById("productsData").value);
+
+            const url = `https://www.ourvapestore.site/delivery-invoice.html?name=${name}&email=${email}&contact=${contact}&address=${address}&delivery_date=${deliveryDate}&delivery_time=${deliveryTime}&F12_amount=${amount}&products=${products}`;
+
+            window.location.href = url;
+        });
+    </script>
+</body>
+</html>
