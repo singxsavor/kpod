@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Invoice - Our Vape Store</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Roboto:wght@300;400;700&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #fff0f6, #ffffff);
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 1.5rem 1rem;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: deeppink;
+    font-family: "Baloo 2", cursive;
+    margin-bottom: 15px;
+    font-size: 2em;
+    text-shadow: 1px 1px 0 #ffcde8;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border-radius: 10px;
+    background: white;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  th, td {
+    border: 1px solid #f3cce9;
+    padding: 12px 15px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  th {
+    background-color: deeppink;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .payment-details {
+    background: #fff0f6;
+    border-radius: 14px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .payment-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  .payment-details h3 {
+    color: deeppink;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .payment-details p {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #5e2a4f;
+    letter-spacing: 0.3px;
+  }
+
+  .paynow-img {
+  display: block;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  margin: 0 auto 20px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+  .paynow-img:hover {
+    transform: scale(1.03);
+  }
+
+  .paynow-info, .bank-info {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .highlight-green {
+    color: #28f728;
+    font-weight: bold;
+  }
+
+  .highlight-red {
+    color: #ac0000;
+    font-weight: bold;
+  }
+
+  .upload-btn {
+    display: block;
+    background: linear-gradient(135deg, deeppink, #ff77c0);
+    color: white;
+    padding: 14px 35px;
+    text-align: center;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 25px auto 0;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .upload-btn:hover {
+    background: linear-gradient(135deg, #ff1493, #ff91c9);
+    transform: scale(1.05);
+  }
+
+  .btn-small {
+    display: block;
+    background: linear-gradient(135deg, deeppink, #ff77c0);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px auto;
+    max-width: 160px;
+    transition: transform 0.2s ease, background 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .btn-small:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff1493, #ff91c9);
+  }
+
+  #receiptForm {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 1rem; }
+    .upload-btn { width: 100%; font-size: 14px; padding: 12px; }
+    .btn-small { width: 100%; font-size: 13px; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="invoice-container">
+<h1>Invoice - Our Vape Store</h1>
+<h2>Customer Order Summary</h2>
+<table>
+<thead>
+<tr><th>Description</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Customer Name</td><td id="customerName">Loading...</td></tr>
+<tr><td>Email Address</td><td id="emailAddress">Loading...</td></tr>
+<tr><td>Contact Number</td><td id="contactNumber">Loading...</td></tr>
+<tr><td>Delivery Address</td><td id="deliveryAddress">Loading...</td></tr>
+<tr><td>Date to Deliver</td><td id="deliveryDate">Loading...</td></tr>
+<tr><td>Time to Deliver</td><td id="deliveryTime">Loading...</td></tr>
+<tr><td>Products Ordered</td><td id="productsOrdered">Loading...</td></tr>
+<tr><td>Total Amount</td><td class="highlight" id="totalAmount">$0.00</td></tr>
+</tbody>
+</table>
+<div class="payment-details">
+<h3>Payment Instructions</h3>
+<p>Scan or Screenshot the QR code below.</p><br/>
+<img alt="PayNow QR Code" class="paynow-img" src="https://www.ourvapestore.site/assets/PaynowQRCode.png"/>
+<div class="btn-container">
+<a class="btn-small" download="PaynowQRCode.png" href="https://www.ourvapestore.site/assets/PaynowQRCode.png">Save QR Code</a>
+</div>
+<p><strong>Bank Transfer</strong></p>
+<p>Payee: <span class="highlight">Our Vape Store</span></p>
+<p>Bank Name: <span class="highlight">DBS Bank</span></p>
+<p>Account No: <span class="highlight">88532600021258160</span></p>
+<p>Once done, Upload the receipt below.</p>
+<button class="upload-btn" onclick="uploadReceipt()">Upload Receipt &amp; Submit</button>
+</div>
+</div>
+<form action="https://formsubmit.co/theamandatayz@yahoo.com" enctype="multipart/form-data" id="receiptForm" method="POST" style="display:none;">
+<input name="_subject" type="hidden" value="New Delivery Invoice Submission"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_next" type="hidden" value="https://www.ourvapestore.site/thank-you.html"/>
+<input name="_autoresponse" type="hidden" value="Thank you for submitting your receipt. We’ll review and get back to you shortly."/>
+<input name="_honey" style="display:none" type="hidden"/>
+<input id="replyToField" name="_replyto" type="hidden"/>
+<input id="inputName" name="Customer Name" type="hidden"/>
+<input id="inputEmail" name="Email Address" type="hidden"/>
+<input id="inputContact" name="Contact Number" type="hidden"/>
+<input id="inputHome" name="Delivery Address" type="hidden"/>
+<input id="inputDOB" name="Date to Deliver" type="hidden"/>
+<input id="inputDriver" name="Time to Deliver" type="hidden"/>
+<input id="inputWork" name="Products Ordered" type="hidden"/>
+<input id="inputAmount" name="Total Amount $" type="hidden"/>
+<input accept="image/*,application/pdf" id="receiptUpload" name="receipt" type="file"/>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const get = key => urlParams.get(key) || "Not provided";
+
+  document.getElementById("customerName").textContent = get("name");
+  document.getElementById("emailAddress").textContent = get("email");
+  document.getElementById("contactNumber").textContent = get("contact");
+  document.getElementById("deliveryAddress").textContent = get("address");
+  document.getElementById("deliveryDate").textContent = get("delivery_date");
+  document.getElementById("deliveryTime").textContent = get("delivery_time");
+  document.getElementById("productsOrdered").textContent = get("products");
+
+  const total = parseFloat(get("F12_amount")) || 0;
+  document.getElementById("totalAmount").textContent = `$${total.toFixed(2)}`;
+
+  // Fill hidden form for submission
+  document.getElementById("inputName").value = get("name");
+  document.getElementById("inputEmail").value = get("email");
+  document.getElementById("replyToField").value = get("email");
+  document.getElementById("inputContact").value = get("contact");
+  document.getElementById("inputHome").value = get("address");
+  document.getElementById("inputDOB").value = get("delivery_date");
+  document.getElementById("inputDriver").value = get("delivery_time");
+  document.getElementById("inputWork").value = get("products");
+  document.getElementById("inputAmount").value = `$${total.toFixed(2)}`;
+});
+
+function uploadReceipt() {
+  const fileInput = document.getElementById("receiptUpload");
+  fileInput.click();
+
+  fileInput.onchange = () => {
+    if (fileInput.files[0]) {
+      document.getElementById("receiptForm").submit();
+    }
+  };
+}
+</script></body>
+</html>

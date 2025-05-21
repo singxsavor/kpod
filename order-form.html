@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --font-primary: "Roboto", sans-serif;
+      --font-accent: "Baloo 2", cursive;
+      --color-primary: deeppink;
+      --color-secondary: #ff77c0;
+      --color-hover: #ff91c9;
+      --color-bg: #fff0f6;
+      --color-card-bg: #ffffff;
+      --color-light: #fdfdfd;
+      --color-dark: #333;
+      --color-muted: #555;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-heavy: rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-primary);
+    }
+
+    body {
+      background: linear-gradient(to bottom right, var(--color-bg), var(--color-card-bg));
+      color: var(--color-dark);
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-family: var(--font-accent);
+      color: var(--color-primary);
+      margin: 20px 0;
+      animation: pulseTitle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseTitle {
+      from { text-shadow: 0 0 6px #ffcde8; }
+      to { text-shadow: 0 0 16px var(--color-hover); }
+    }
+
+    form {
+      background: var(--color-light);
+      max-width: 500px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--shadow-light);
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .order-summary {
+      margin-top: 20px;
+      background: var(--color-light);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px var(--shadow-light);
+    }
+
+    .order-summary h2, .total-amount {
+      color: var(--color-primary);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .submit-container {
+      margin-top: 20px;
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px var(--shadow-heavy);
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #ff1493, var(--color-hover));
+    }
+  </style>
+</head>
+<body>
+<h1>Order Form</h1>
+<form id="deliveryForm">
+<label for="customerName">Name:</label>
+<input id="customerName" name="customer_name" required="" type="text"/>
+<label for="contact">Contact:</label>
+<input id="contact" name="contact" required="" type="text"/>
+<label for="email">Email:</label>
+<input id="email" name="email" required="" type="email"/>
+<label for="address">Delivery Address:</label>
+<textarea id="address" name="address" required=""></textarea>
+<label for="deliveryDate">Date to Deliver:</label>
+<input id="deliveryDate" name="delivery_date" required="" type="date"/>
+<label for="deliveryTime">Time to Deliver:</label>
+<input id="deliveryTime" name="delivery_time" required="" type="time"/>
+<div class="mb-3">
+<label class="form-label" for="productSelect">Select Product:</label>
+<select class="form-select" id="productSelect" required="">
+<option disabled="" selected="" value="">-- Choose an item --</option>
+<option value="USTD:$58">USTD - $58</option>
+<option value="Gucci:$58">Gucci - $58</option>
+<option value="THC:$58">THC - $58</option>
+<option value="SGD:$78">SGD - $78</option>
+<option value="VINA:$68">VINA - $68</option>
+<option value="Lucifer:$68">Lucifer - $68</option>
+<option value="Bundle of 5 Pods:$250">Bundle of 5 Pods - $250</option>
+<option value="DDHT Device:$100">DDHT Device - $100</option>
+<option value="LANA Device:$50">LANA Device - $50</option>
+<option value="Relx Device:$50">Relx Device - $50</option>
+<option value="RELX POD:$14">RELX POD - $14</option>
+<option value="SP2 POD:$13">SP2 POD - $13</option>
+<option value="LANA POD:$9">LANA POD - $9</option>
+<option value="R-ONE POC:$11">R-ONE POC - $11</option>
+<option value="ZEUZCUBIC POD:$10">ZEUZCUBIC POD - $10</option>
+<option value="LANA PEN 2000:$12">LANA PEN 2000 - $12</option>
+<option value="LANA BAR 5000:$13">LANA BAR 5000 - $13</option>
+<option value="LANA PREMIUM 5800:$14">LANA PREMIUM 5800 - $14</option>
+<option value="LANA TREND 6000:$14">LANA TREND 6000 - $14</option>
+<option value="LANA ULTRA 7000:$15">LANA ULTRA 7000 - $15</option>
+<option value="LANA OPAL 8000:$16">LANA OPAL 8000 - $16</option>
+<option value="LANA PEN PLUS 9000:$17">LANA PEN PLUS 9000 - $17</option>
+<option value="LANA FIZZ 12000:$15">LANA FIZZ 12000 - $15</option>
+<option value="LANA CHEER 15000:$15">LANA CHEER 15000 - $15</option>
+<option value="LANA CHEER REFILL:$16">LANA CHEER REFILL - $16</option>
+<option value="ELFBAR RAYA 10000:$11">ELFBAR RAYA 10000 - $11</option>
+<option value="DD PANDA 15000:$16">DD PANDA 15000 - $16</option>
+<option value="SP2 AIR 12000:$12">SP2 AIR 12000 - $12</option>
+<option value="ZEUZ STIX 2500:$12">ZEUZ STIX 2500 - $12</option>
+<option value="ZEUZ PEN 6000:$15">ZEUZ PEN 6000 - $15</option>
+<option value="ZEUZ DIAM 12000:$18">ZEUZ DIAM 12000 - $18</option>
+<option value="VAPE TAPE 12000:$18">VAPE TAPE 12000 - $18</option>
+<option value="UNPLUG 12000:$17">UNPLUG 12000 - $17</option>
+<option value="UNPLUG REFILL:$15">UNPLUG REFILL - $15</option>
+<option value="ALADDIN SPARK 16000:$18">ALADDIN SPARK 16000 - $18</option>
+<option value="VAPEBOXX 12000:$16">VAPEBOXX 12000 - $16</option>
+<option value="KING X PRO 12000:$15">KING X PRO 12000 - $15</option>
+<option value="RELX CRUSH POC 6000:$13">RELX CRUSH POC 6000 - $13</option>
+<option value="SPECIAL:$10">SPECIAL - $10</option>
+<option value="HEETS REFILL:$97">HEETS REFILL - $97</option>
+<option value="TERRA REFILL:$97">TERRA REFILL - $97</option>
+<option value="ILUMA PRIME:$250">ILUMA PRIME - $250</option>
+<option value="ILUMA ONE:$130">ILUMA ONE - $130</option>
+<option value="ILUMA:$210">ILUMA - $210</option>
+<option value="SP2 DV:$35">SP2 DV - $35</option>
+<option value="DDS DV:$55">DDS DV - $55</option>
+<option value="DD CUBE DEV:$45">DD CUBE DEV - $45</option>
+<option value="KIZZ DV:$30">KIZZ DV - $30</option>
+<option value="ZEUZCUBIC DV:$30">ZEUZCUBIC DV - $30</option>
+<option value="D-TOUCH DV:$55">D-TOUCH DV - $55</option>
+<option value="GENESIS DV:$45">GENESIS DV - $45</option>
+<option value="R ONE DV:$50">R ONE DV - $50</option>
+<option value="N CORE DV:$25">N CORE DV - $25</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label" for="productQty">Quantity:</label>
+<input class="form-control" id="productQty" min="1" required="" type="number" value="1"/><div class="mb-3">
+<label class="form-label" for="promoCode">Promo Code:</label>
+<input class="form-control" id="promoCode" placeholder="Enter promo code (optional)" type="text"/>
+</div>
+</div>
+<div class="order-summary">
+<h2>Order Summary</h2>
+<p>Items Total: $<span id="itemsTotal">0.00</span></p>
+<p>Delivery Fee: $<span id="deliveryFee">15.00</span></p>
+<p class="total-amount">Total: $<span id="totalAmount">15.00</span></p>
+<input id="F12Amount" name="F12_amount" type="hidden" value="0"/>
+<input id="productsData" name="products" type="hidden" value=""/>
+</div>
+<div class="submit-container">
+<button type="submit">Submit</button>
+</div>
+</form>
+<script>
+const dropdown = document.getElementById("productSelect");
+const qtyInput = document.getElementById("productQty");
+const promoInput = document.getElementById("promoCode");
+const F12Amount = document.getElementById("F12Amount");
+const productsData = document.getElementById("productsData");
+const itemsTotal = document.getElementById("itemsTotal");
+const totalAmount = document.getElementById("totalAmount");
+
+function updateTotal() {
+  const value = dropdown.value;
+  if (!value) return;
+
+  const [name, price] = value.split(":$");
+  const qty = parseInt(qtyInput.value) || 1;
+  const priceNum = parseFloat(price);
+  let itemTotal = qty * priceNum;
+
+  let discount = 0;
+  const promo = promoInput.value.trim().toLowerCase();
+  if (promo === "ourvapestoresg60" && itemTotal >= 300) {
+    discount = 60;
+    itemTotal -= discount;
+  }
+
+  F12Amount.value = itemTotal.toFixed(2);
+  productsData.value = `${name} x${qty}${discount > 0 ? " (Promo Applied)" : ""}`;
+  itemsTotal.textContent = itemTotal.toFixed(2);
+  totalAmount.textContent = (itemTotal + 15).toFixed(2);
+}
+
+dropdown.addEventListener("change", updateTotal);
+qtyInput.addEventListener("input", updateTotal);
+promoInput.addEventListener("input", updateTotal);
+
+document.getElementById("deliveryForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = encodeURIComponent(document.getElementById("customerName").value);
+  const email = encodeURIComponent(document.getElementById("email").value);
+  const contact = encodeURIComponent(document.getElementById("contact").value);
+  const address = encodeURIComponent(document.getElementById("address").value);
+  const deliveryDate = encodeURIComponent(document.getElementById("deliveryDate").value);
+  const deliveryTime = encodeURIComponent(document.getElementById("deliveryTime").value);
+  const amount = encodeURIComponent(document.getElementById("F12Amount").value);
+  const products = encodeURIComponent(document.getElementById("productsData").value);
+
+  const url = `https://www.ourvapestore.site/manda-invoice.html?name=${name}&email=${email}&contact=${contact}&address=${address}&delivery_date=${deliveryDate}&delivery_time=${deliveryTime}&F12_amount=${amount}&products=${products}`;
+  window.location.href = url;
+});
+</script></body>
+</html>
